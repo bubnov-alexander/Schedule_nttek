@@ -14,3 +14,4 @@ use SergiX44\Nutgram\Nutgram;
 */
 
 $bot->registerCommand(\App\Http\Controllers\StartCommand::class);
+

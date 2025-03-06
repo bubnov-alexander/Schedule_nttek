@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Tasks\AddUserTask;
+use App\Http\Tasks\CreateUserTask;
 use SergiX44\Nutgram\Handlers\Type\Command;
 use SergiX44\Nutgram\Nutgram;
 
@@ -13,6 +15,7 @@ class StartCommand extends Command
 
     public function handle(Nutgram $bot): void
     {
-        $bot->sendMessage('Dasha molodec');
+        $message = CreateUserTask::class->run($bot); ;
+        $bot->sendMessage($message);
     }
 }
