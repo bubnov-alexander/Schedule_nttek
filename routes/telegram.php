@@ -2,6 +2,7 @@
 /** @var SergiX44\Nutgram\Nutgram $bot */
 
 use SergiX44\Nutgram\Nutgram;
+use App\Http\Controllers\StartCommandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,5 +14,6 @@ use SergiX44\Nutgram\Nutgram;
 |
 */
 
-$bot->registerCommand(\App\Http\Controllers\StartCommand::class);
+$bot->onCommand('start', [StartCommandController::class, 'run'])
+    ->description('Регистрация в боте');
 

@@ -5,6 +5,7 @@ namespace App\Http\Tasks;
 use App\Http\Controllers\Controller;
 use App\Http\DTO\GenerateUserDTO;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class CreateUserTask extends Controller
 {
@@ -17,8 +18,10 @@ class CreateUserTask extends Controller
 
     public function run($user): string
     {
-        $user = User::where('telegram_id', $user->id)->first();
-        dump($user);
+        dd($user);
+
+        $user = User::where('telegram_id', $user->id)
+            ->first();
 
         if ($user !== null) {
             $message = 'Вы уже зарегистрированы в боте. Напишите /menu';

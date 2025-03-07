@@ -4,7 +4,7 @@ namespace App\Http\DTO;
 
 use Spatie\LaravelData\Data;
 
-class UserDTO extends Data
+class UserDTO
 {
     public function __construct(
         public int     $telegram_id,
