@@ -6,21 +6,15 @@ use Illuminate\Support\Facades\Log;
 
 class GenerateUserDTO
 {
-    public function __construct(
-        protected UserDTO $userDTO,
-    )
+    public function run($user, string $group = null): UserDTO
     {
-    }
-
-    public function run($user): UserDTO
-    {
-        $userDTO = $this->userDTO;
-        $userDTO->setTelegramId($user->user()->id);
-        $userDTO->setTelegramUsername($user->user()->name);
-        $userDTO->setTelegramFirstName($user->user()->first_name);
-        $userDTO->setTelegramLastName($user->user()->last_name);
-
-        return $userDTO;
+        return new UserDTO(
+            telegram_id: $user->id,
+            telegram_username: $user->username,
+            telegram_first_name: $user->first_name,
+            telegram_last_name: $user->last_name,
+            group: $group,
+        );
     }
 
 }

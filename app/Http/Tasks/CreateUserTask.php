@@ -16,20 +16,18 @@ class CreateUserTask extends Controller
     {
     }
 
-    public function run($user): string
+    public function run($nutgramUser): string
     {
-        dd($user);
-
-        $user = User::where('telegram_id', $user->id)
+        $user = User::where('telegram_id', $nutgramUser->id)
             ->first();
 
         if ($user !== null) {
-            $message = 'Вы уже зарегистрированы в боте. Напишите /menu';
+            $message = 'С возвращением в @nttek_2is6_bot @' . $nutgramUser->username . '. Напишите /menu';
         } else {
-            $userDTO = $this->generateUserDTO->run($user);
+            $userDTO = $this->generateUserDTO->run($nutgramUser);
             $this->addUserTask->run($userDTO);
 
-            $message = 'Вы успешно зарегистрировались в боту. Напишите /menu';
+            $message = 'Добро пожаловать в @nttek_2is6_bot @' . $nutgramUser->username . '. Напишите /menu';
         }
 
         return $message;

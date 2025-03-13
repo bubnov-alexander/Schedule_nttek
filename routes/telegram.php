@@ -3,6 +3,10 @@
 
 use SergiX44\Nutgram\Nutgram;
 use App\Http\Controllers\StartCommandController;
+use \App\Http\Controllers\MenuCommandController;
+use \App\Http\Controllers\ScheduleMenuController;
+use \App\Http\Controllers\GetScheduleController;
+use \App\Http\Controllers\SetGroupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +18,17 @@ use App\Http\Controllers\StartCommandController;
 |
 */
 
-$bot->onCommand('start', [StartCommandController::class, 'run'])
+$bot->onCommand('start', StartCommandController::class)
     ->description('Регистрация в боте');
+
+$bot->onCommand('menu', MenuCommandController::class)
+    ->description('Главное меню');
+
+$bot->onCommand('setgroup', SetGroupController::class)
+    ->description('Установить группу');
+
+
+$bot->onCallbackQueryData('menu', MenuCommandController::class);
+$bot->onCallbackQueryData('schedule_menu', ScheduleMenuController::class);
+$bot->onCallbackQueryData('getSchedule {typeSchedule} {groupName} {date}', GetScheduleController::class);
 

@@ -14,9 +14,11 @@ class StartCommandController extends Controller
     {
     }
 
-    public function run(Nutgram $bot): void
+    public function __invoke(Nutgram $bot): void
     {
-        $message = $this->createUserTask->run($bot);
+        $bot->message()->delete();
+
+        $message = $this->createUserTask->run($bot->user());
         $bot->sendMessage($message);
     }
 }

@@ -4,15 +4,14 @@ namespace App\Http\DTO;
 
 use Spatie\LaravelData\Data;
 
-class UserDTO
+class UserDTO extends Data
 {
     public function __construct(
-        public int     $telegram_id,
-
-        public string  $telegram_username,
-        public string  $telegram_first_name,
-        public ?string $telegram_last_name,
-        public ?string $group,
+        protected int     $telegram_id,
+        protected string  $telegram_username,
+        protected string  $telegram_first_name,
+        protected ?string $telegram_last_name,
+        protected ?string $group,
     )
     {
     }

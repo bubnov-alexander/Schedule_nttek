@@ -10,12 +10,16 @@ class AddUserTask extends Controller
 {
     public function run(UserDTO $userDTO): User
     {
-        return User::create([
-            'telegram_id' => $userDTO->getTelegramId(),
-            'telegram_username' => $userDTO->getTelegramUsername(),
-            'telegram_first_name' => $userDTO->getTelegramFirstName(),
-            'telegram_last_name' => $userDTO->getTelegramLastName(),
-            'group' => $userDTO->getGroup(),
-        ]);
+        $user = new User();
+        $user->telegram_id = $userDTO->getTelegramId();
+        $user->telegram_first_name = $userDTO->getTelegramFirstName();
+        $user->telegram_last_name = $userDTO->getTelegramLastName();
+        $user->telegram_username = $userDTO->getTelegramUsername();
+        $user->group = $userDTO->getGroup();
+
+        $user->save();
+
+        return $user;
+
     }
 }
