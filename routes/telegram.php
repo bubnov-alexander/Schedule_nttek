@@ -32,3 +32,6 @@ $bot->onCallbackQueryData('menu', MenuCommandController::class);
 $bot->onCallbackQueryData('schedule_menu', ScheduleMenuController::class);
 $bot->onCallbackQueryData('getSchedule {typeSchedule} {groupName} {date}', GetScheduleController::class);
 
+Route::post('/telegram/webhook', function (Nutgram $bot) {
+    $bot->run();
+});

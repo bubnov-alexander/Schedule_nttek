@@ -13,9 +13,9 @@ class GetDateForScheduleTask
      */
     public function run(): array
     {
-        $response = Http::timeout(30) // общий таймаут, сек
-        ->connectTimeout(10)     // таймаут на установление соединения
-        ->retry(3, 200)          // повторить запрос 3 раза, задержка 200 мс
+        $response = Http::timeout(30)
+        ->connectTimeout(10)
+        ->retry(3, 200)
         ->get('https://erp.nttek.ru/api/schedule/legacy');
 
         if ($response->successful()) {
